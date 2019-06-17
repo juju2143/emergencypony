@@ -1,0 +1,33 @@
+{
+  "name": "emergencypony",
+  "version": "1.0.0",
+  "description": "Twitter bot that actually posts pony pics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "cleanup": "node cleanup.js",
+    "download": "node fetch_images.js",
+    "tweet": "node tweet.js"
+  },
+  "author": "juju2143",
+  "license": "LiLiQ-R-1.1",
+  "dependencies": {
+    "mt-files-downloader": "^0.2.5",
+    "node-cron": "^2.0.3",
+    "twit": "^2.2.11",
+    "wikijs": "^5.5.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juju2143/emergencypony.git"
+  },
+  "keywords": [
+    "pony"
+  ],
+  "bugs": {
+    "url": "https://github.com/juju2143/emergencypony/issues"
+  },
+  "homepage": "https://github.com/juju2143/emergencypony#readme"
+}
