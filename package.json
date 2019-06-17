@@ -11,7 +11,7 @@
     "tweet": "node tweet.js"
   },
   "author": "juju2143",
-  "license": "LiLiQ-R-1.1",
+  "license": "LiLiQ-P-1.1",
   "dependencies": {
     "mt-files-downloader": "^0.2.5",
     "node-cron": "^2.0.3",
