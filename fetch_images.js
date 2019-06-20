@@ -35,45 +35,46 @@ var timer = setInterval(() => {
     var dls = downloader.getDownloads().filter(d => (d.status == 1));
     if(downloads.length > 0 && dls.length < config.downloader.maxDownloads)
     {
-        var d = downloads.pop();
-        try
+        do
         {
-            var stats = fs.statSync(d.path);
+            var d = downloads.pop();
+            try
+            {
+                var stats = fs.statSync(d.path);
+            }
+            catch(e)
+            {
+                var stats = false;
+                //if(d) console.log('⭕️ '+d.path+' exists, skipping...')
+            }
         }
-        catch(e)
-        {
-            var stats = false;
-        }
-        if(stats && stats.size > 0)
-        {
-            console.log('⭕️ '+d.path+' exists, skipping...')
-        }
-        else
-        {
-            var dl = downloader.download(d.url, d.path);
-            dl.on('start', function() {
-                console.log('✅ '+d.path+' - Download started!');
-            });
-            dl.on('error', function() {
-                console.log('💢 '+d.path+' - Download error!');
-                console.log(dl.error);
-                downloads.push(d);
-            });
-            dl.on('end', function() {
-                var stats = dl.getStats();
-                console.log('🏁 '+d.path+' - Download finished! '+stats.total.size+' bytes');
-            });
-            dl.on('retry', function() {
-                console.log('⚠️ '+d.path+' - Download error, retrying...');
-            });
-            dl.on('stopped', function() {
-                console.log('⏹ '+d.path+' - Download stopped...');
-            });
-            dl.on('destroyed', function() {
-                console.log('❌ '+d.path+' - Download destroyed...');
-            });
-            dl.start();
-        }
+        while(!stats || stats.size == 0);
+
+        var dl = downloader.download(d.url, d.path);
+        dl.on('start', function() {
+            console.log('✅ '+d.path+' - Download started!');
+        });
+        dl.on('error', function() {
+            console.log('💢 '+d.path+' - Download error!');
+            console.log(dl.error);
+            downloads.push(d);
+        });
+        dl.on('end', function() {
+            var stats = dl.getStats();
+            console.log('🏁 '+d.path+' - Download finished! '+stats.total.size+' bytes');
+            dl.stop();
+        });
+        dl.on('retry', function() {
+            console.log('⚠️ '+d.path+' - Download error, retrying...');
+        });
+        dl.on('stopped', function() {
+            //console.log('⏹ '+d.path+' - Download stopped.');
+        });
+        dl.on('destroyed', function() {
+            console.log('❌ '+d.path+' - Download destroyed.');
+        });
+        dl.start();
+
         if(downloads.length == 0) clearInterval(timer);
     }
 }, config.downloader.interval);

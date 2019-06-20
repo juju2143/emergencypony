@@ -19,7 +19,7 @@ I'd have downloaded a random screenshot from Wikia/Fandom each time the tweet fu
 - Clone this repository somewhere
 - Make sure you have node.js installed
 - Fetch the dependencies: `npm install`
-- Copy config.sample.json to config.json and edit it accordingly
+- Copy `config.sample.json` to `config.json` and edit it accordingly
 - Download the images from the [MLP Wiki](https://mlp.fandom.com) (will take a while and Wikia and/or your computer might hate you): `npm run download`
   - Note: it's about 200 MB per episode, there over 200 episodes and the process will take over an hour to complete assuming a good internet connection, so have a bunch of disk space and time aside for it :)
   - You actually can have anything in the images folder, as long as it respects a naming scheme like `Episode Name - Part 1/Something epic happens, whatever.png`
@@ -31,14 +31,14 @@ I'd have downloaded a random screenshot from Wikia/Fandom each time the tweet fu
 
 ## config.json
 
-- images: Sets the images folder
-- downloader: Sets parameters for `npm run download`
-  - start: Season to start from
-  - end: Season to end with
-  - interval: Starts a new file download every x milliseconds
-  - maxDownloads: Limits how many files to download at the same time
-- tweetSchedule: Tweet schedule in cron format (ex. "0,30 * * * *" means on minutes 0 and 30 of every hour)
-- twitter: Whatever Twitter needs for connectiong to their API
+- `images`: Sets the images folder
+- `downloader`: Sets parameters for `npm run download`
+  - `start`: Season to start from
+  - `end`: Season to end with
+  - `interval`: Starts a new file download every x milliseconds
+  - `maxDownloads`: Limits how many files to download at the same time
+- `tweetSchedule`: Tweet schedule in cron format (ex. `0,30 * * * 1-6` means on minutes 0 and 30 of every hour except on Sundays)
+- `twitter`: Whatever Twitter needs for connectiong to their API
 
 ## Licensing
 
