@@ -34,7 +34,7 @@ for(season=config.downloader.start;season<=config.downloader.end;season++)
                 images.forEach(image => {
                     var img = path+image.title.replace("File:","");
                     var url = image.imageinfo[0].url;
-                    path.push(img);
+                    paths.push(img);
                     var stats = fs.stat(img, (err, stats)=>{
                         var a = false;
                         if(err) { missing++; a=true; }
