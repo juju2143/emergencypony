@@ -8,6 +8,7 @@
     "start": "node index.js",
     "cleanup": "node cleanup.js",
     "download": "node fetch_images.js",
+    "check": "node check.js",
     "tweet": "node tweet.js"
   },
   "author": "juju2143",
