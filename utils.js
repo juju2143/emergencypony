@@ -15,7 +15,7 @@ module.exports = class Utils
             {
                 var episodes = fs.readdirSync(config.images);
                 var episode = episodes[Math.floor(Math.random() * episodes.length)];
-                var pictures = fs.readdirSync(config.images+"/"+episode).filter(pic => pic.endsWith(".png"));
+                var pictures = fs.readdirSync(config.images+"/"+episode).filter(pic => pic.endsWith(".png") || pic.endsWith(".jpg") || pic.endsWith(".gif"));
                 if(pictures.length == 0) content = "";
                 else
                 {
