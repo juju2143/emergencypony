@@ -6,7 +6,7 @@ module.exports = class Utils
 {
     static tweet()
     {
-        var T = new Twit(config);
+        var T = new Twit(config.twitter);
 
         do
         {
