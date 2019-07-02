@@ -33,17 +33,27 @@ module.exports = class Utils
         console.log("Uploading picture...");
         T.post('media/upload', {
             media_data: content
-        }, function (err, data, response) {
-            if(err) console.log(err);
+        }, function upload(err, data, response) {
+            if(err)
+            {
+                console.log(err);
+                console.log("Something failed, try again...");
+                Utils.tweet();
+            }
             else
             {
                 console.log('Sending tweet...');
                 T.post('statuses/update', {
                     media_ids: new Array(data.media_id_string),
                     status: episode
-                }, function(err, data, response) {
-                    if(err) console.log(err);
-                    else console.log('Tweet sent! '+ data.entities.urls[0].url);
+                }, function(err2, data2, response2) {
+                    if(err2)
+                    {
+                        console.log(err2);
+                        console.log("Something failed, try again...");
+                        upload(err, data, response);
+                    }
+                    else console.log('Tweet sent!');
                 });
             }
         });
