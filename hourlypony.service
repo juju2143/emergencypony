@@ -1,0 +1,18 @@
+[Unit]
+Description=Hourly Pony Twitter Bot
+After=network.target
+
+[Service]
+# change this to wherever you cloned the repo
+WorkingDirectory=/home/minty/emergencypony
+
+# change this to your own username and group that isn't root
+User=minty
+Group=minty
+
+Restart=always
+
+ExecStart=/usr/bin/npm start
+
+[Install]
+WantedBy=multi-user.target

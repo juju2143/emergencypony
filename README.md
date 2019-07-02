@@ -40,6 +40,20 @@ I'd have downloaded a random screenshot from Wikia/Fandom each time the tweet fu
 - `tweetSchedule`: Tweet schedule in cron format (ex. `0,30 * * * 1-6` means on minutes 0 and 30 of every hour except on Sundays)
 - `twitter`: Whatever Twitter needs for connectiong to their API
 
+## Run on startup (Linux with systemd)
+
+- Copy the provided service file in `/etc/systemd/system/` as root and make the necessary changes
+- Run these commands:
+    ```sh
+    sudo systemctl daemon-reload
+    sudo systemctl enable hourlypony
+    sudo systemctl start hourlypony
+    ```
+- Monitor the script's output:
+    ```sh
+    sudo journalctl -fu hourlypony
+    ```
+
 ## Licensing
 
 This software is licensed under the terms of the Québec Free and Open-Source Licence – Permissive (LiLiQ-P). If you use it, please tip me some money on [Paypal](https://paypal.me/juju2143) or [Patreon](https://patreon.com/juju2143), or at least tell me about it :)
